@@ -2,17 +2,31 @@
 public class Main {
 
 	public static void main(String[] args) {
-		Cliente venilton = new Cliente();
+		Banco santander = new Banco();
+		santander.setNome("Santander");
+		Cliente venilton = new Cliente("32321321");
+		Cliente thaynara = new Cliente("15751325");
+		thaynara.setNome("Thaynara");
 		venilton.setNome("Venilton");
 		
-		Conta cc = new ContaCorrente(venilton);
-		Conta poupanca = new ContaPoupanca(venilton);
+		Conta ccThaynara = new ContaCorrente(thaynara, santander);
+		Conta cc = new ContaCorrente(venilton, santander);
+		Conta poupancaVenilton = new ContaPoupanca(venilton, santander, "+55 22 99754-1243");
+		poupancaVenilton.depositar(15000);
 
-		cc.depositar(100);
-		cc.transferir(100, poupanca);
 		
-		cc.imprimirExtrato();
-		poupanca.imprimirExtrato();
-	}
+		System.out.println(poupancaVenilton.getSaldo());
+		santander.aplicarRendimentoPoupanca();
+		System.out.println(poupancaVenilton.getSaldo());
 
+		//cc.imprimirExtrato();
+		//poupanca.imprimirExtrato();
+		//cc.imprimirInfosComuns();
+
+		//poupanca.listarContasTipo();
+		//cc.listarContasTipo();
+		//santander.listarContas(thaynara);first changes
+		santander.listarContasCorrente();
+		santander.listarContasPoupanca();
+	}
 }
